@@ -19,7 +19,7 @@ Whenever you are creating a new python library or package just and this file **l
 
 .. code-block:: python
 
-    import logger
+    from . import logger
 
     LOGGER = logger.get_logger(__name__, path_dir_where_to_store_logs=".")
 
