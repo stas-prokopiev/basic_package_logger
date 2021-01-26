@@ -23,7 +23,9 @@ STR_ERROR_FILE_FORMAT = STR_DEBUG_FILE_FORMAT
 STR_DEBUG_FORMAT = '[%(levelname)s] %(message)s'
 STR_INFO_FORMAT = '%(message)s'
 STR_WARNING_FORMAT = '[%(levelname)s] %(message)s'
-STR_ERROR_FORMAT = STR_ERROR_FILE_FORMAT
+STR_ERROR_FORMAT = (
+    '[%(levelname)s: %(asctime)s:%(filename)s:'
+    '%(name)s:%(funcName)s:%(lineno)d] %(message)s')
 
 
 class OnlyLowerLevelFilter():
