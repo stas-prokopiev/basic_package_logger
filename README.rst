@@ -21,7 +21,11 @@ Whenever you are creating a new python library or package just and this file **l
 
     from . import logger
 
-    LOGGER = logger.getLogger(__name__, path_dir_where_to_store_logs=".")
+    LOGGER = logger.getLogger(
+        name=__name__,
+        path_dir_where_to_store_logs=".",
+        is_stdout_debug=False
+    )
 
 2) And after the imports in every python module add following lines
 
