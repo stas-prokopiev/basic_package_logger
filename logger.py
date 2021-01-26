@@ -24,13 +24,18 @@ class OnlyLowerLevelFilter():
         return record.levelno < self.level
 
 
-def get_logger(name, path_dir_where_to_store_logs="", is_stdout_debug=False):
+def get_logger(
+        name,
+        path_dir_where_to_store_logs="",
+        is_stdout_debug=False,
+        is_to_propagate_to_root_logger=False,
+):
     """function returns a perfectly set up logger for the new package"""
     # Create and set basic settings for logger
     logging.basicConfig(level=0)
     LOGGER = logging.getLogger(name)
     LOGGER.setLevel(0)
-    LOGGER.propagate = False
+    LOGGER.propagate = is_to_propagate_to_root_logger
     #####
     # 1) Set up stdout logs
     # 1.0) Add debug handler if necessary
