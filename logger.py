@@ -4,14 +4,18 @@ import sys
 import os
 import logging
 
+# Define constants with formatters
+STR_DEBUG_FILE_FORMAT = (
+    '[%(levelname)s: %(asctime)s:%(filename)s:'
+    '%(name)s:%(funcName)s:%(lineno)d] %(message)s')
+STR_ERROR_FILE_FORMAT = STR_DEBUG_FILE_FORMAT
 
 STR_DEBUG_FORMAT = '[%(levelname)s] %(message)s'
 STR_INFO_FORMAT = '%(message)s'
 STR_WARNING_FORMAT = '[%(levelname)s] %(message)s'
+STR_ERROR_FORMAT = STR_ERROR_FILE_FORMAT
 
 
-STR_DEBUG_FORMAT = '[%(levelname)s: %(asctime)s:%(filename)s:%(name)s:%(funcName)s:%(lineno)d] %(message)s'
-STR_ERROR_FORMAT = STR_DEBUG_FORMAT
 
 
 class OnlyLowerLevelFilter():
@@ -77,7 +81,7 @@ def get_logger(
         backupCount=1
     )
     debug_file_handler.setLevel(level=0)
-    debug_file_handler.setFormatter(logging.Formatter(STR_DEBUG_FORMAT))
+    debug_file_handler.setFormatter(logging.Formatter(STR_DEBUG_FILE_FORMAT))
     LOGGER.addHandler(debug_file_handler)
     # 2.1) Warnings and above handler
     warnings_file_handler = logging.handlers.RotatingFileHandler(
@@ -86,7 +90,8 @@ def get_logger(
         backupCount=1
     )
     warnings_file_handler.setLevel(level=0)
-    warnings_file_handler.setFormatter(logging.Formatter(STR_DEBUG_FORMAT))
+    warnings_file_handler.setFormatter(
+        logging.Formatter(STR_ERROR_FILE_FORMAT))
     LOGGER.addHandler(warnings_file_handler)
     #####
     return LOGGER
