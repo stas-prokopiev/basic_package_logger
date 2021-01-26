@@ -7,8 +7,17 @@ import logging
 # Define constants with msg formats
 # File msg formats
 STR_DEBUG_FILE_FORMAT = (
-    '[%(levelname)s: %(asctime)s:%(filename)s:'
-    '%(name)s:%(funcName)s:%(lineno)d] %(message)s')
+    "{"
+    "'levelname':'%(levelname)s', "
+    "'asctime':'%(asctime)s', "
+    "'filename':'%(filename)s', "
+    "'name':'%(name)s', "
+    "'funcName':'%(funcName)s', "
+    "'lineno':'%(lineno)d', "
+    "'message':'%(message)s'"
+    "}"
+)
+
 STR_ERROR_FILE_FORMAT = STR_DEBUG_FILE_FORMAT
 # stdout msg formats
 STR_DEBUG_FORMAT = '[%(levelname)s] %(message)s'
