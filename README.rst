@@ -1,6 +1,6 @@
-=======================
-package_logger_set_up
-=======================
+=========================
+The Perfect First LOGGER
+=========================
 
 .. contents:: **Table of Contents**
 
