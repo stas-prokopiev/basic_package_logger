@@ -78,6 +78,12 @@ def get_logger(
     LOGGER.addHandler(error_handler)
     if not path_dir_where_to_store_logs:
         return LOGGER
+    if not os.path.isdir(path_dir_where_to_store_logs):
+        raise TypeError(
+            "Wrong type of argument 'path_dir_where_to_store_logs'\n"
+            "Expected to get string with path to some directory "
+            "But got: " + str(path_dir_where_to_store_logs)
+        )
     #####
     # 2) Set up file handlers for logger
     # Create folder for Logs
