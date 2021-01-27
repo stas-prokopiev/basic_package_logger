@@ -52,17 +52,19 @@ This is what user can expect to see for every message level
 --------------------------------------------------------------
 
 Stdout:
+^^^^^^^^^^
 
-- LOGGER.debug("hi") -> Not printed
-- LOGGER.info("hi") -> "hi"
-- LOGGER.warning("hi") -> [WARNING]: hi
-- LOGGER.error("hi") -> Not printed
-- LOGGER.critical("hi") -> Not printed
+- **LOGGER.debug("hi")** -> Not printed
+- **LOGGER.info("hi")** -> "hi"
+- **LOGGER.warning("hi")** -> [WARNING]: hi
+- **LOGGER.error("hi")** -> Not printed
+- **LOGGER.critical("hi")** -> Not printed
 
 Stderr:
+^^^^^^^^^^
 
-- LOGGER.error("hi") -> [Long description of where and when error occured]: hi
-- LOGGER.critical("hi") -> [Long description of where and when critical error occured]: hi
+- **LOGGER.error("hi")** -> [Long description of where and when error occured]: hi
+- **LOGGER.critical("hi")** -> [Long description of where and when critical error occured]: hi
 
 Additional arguments
 ============================
