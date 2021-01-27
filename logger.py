@@ -105,7 +105,7 @@ def get_logger(
         maxBytes=10000,
         backupCount=1
     )
-    warnings_file_handler.setLevel(level=0)
+    warnings_file_handler.setLevel(level=30)
     warnings_file_handler.setFormatter(
         logging.Formatter(STR_ERROR_FILE_FORMAT))
     LOGGER.addHandler(warnings_file_handler)
