@@ -28,7 +28,7 @@ How to use
         is_to_propagate_to_root_logger=False,
     )
 
-2) And after imports in every python module add following lines
+2) And after imports in every python module add the following lines
 
 .. code-block:: python
 
@@ -37,7 +37,7 @@ How to use
     LOGGER = logging.get_logger(__name__)
 
 
-Now you have perfectly set up logger for the new library or package
+Now you have perfectly set up logger for your library or package
 
 .. code-block:: python
 
