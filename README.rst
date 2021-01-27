@@ -6,13 +6,14 @@ The Perfect First LOGGER
 
 Overview.
 =========================
-| This is a one file library with only one function get_logger
-| which can be used as first logger set up for new py packages
+| This is a one file (**logger.py**) library with only one function (**get_logger**)
+| which returns a LOGGER that can be used as first logger in many cases
 
 How to use
 ============================
 
-Whenever you are creating a new python library or package just and this file **logger.py** into the root of it.
+| Whenever you are creating a new python library or package
+| just add the file **logger.py** from this repo into the root of you project
 
 1) Then in the root __init__.py add following lines
 
