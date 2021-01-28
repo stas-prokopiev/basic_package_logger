@@ -21,7 +21,7 @@ How to use
 
     from . import logger
 
-    LOGGER = logger.getLogger(
+    LOGGER = logger.get_logger(
         name=__name__,
         path_dir_where_to_store_logs="",
         is_stdout_debug=False,
