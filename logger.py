@@ -45,9 +45,12 @@ def get_logger(
         is_to_propagate_to_root_logger=False,
 ):
     """function returns a perfectly set up logger for the new package"""
+    LOGGER = logging.getLogger(name)
+    # If logger already exists then just return it
+    if LOGGER.hasHandlers():
+        return LOGGER
     # Create and set basic settings for logger
     logging.basicConfig(level=0)
-    LOGGER = logging.getLogger(name)
     LOGGER.setLevel(0)
     LOGGER.propagate = is_to_propagate_to_root_logger
     #####
