@@ -47,7 +47,7 @@ def get_logger(
     """function returns a perfectly set up logger for the new package"""
     LOGGER = logging.getLogger(name)
     # If logger already exists then just return it
-    if LOGGER.hasHandlers():
+    if LOGGER.handlers:
         return LOGGER
     # Create and set basic settings for logger
     logging.basicConfig(level=0)
