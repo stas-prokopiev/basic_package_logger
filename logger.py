@@ -2,6 +2,7 @@
 which can be used as first logger set up for new py packages"""
 import sys
 import os
+import io
 import logging
 
 # Define constants with msg formats
@@ -50,9 +51,13 @@ def get_logger(
     if LOGGER.handlers:
         return LOGGER
     # Create and set basic settings for logger
-    logging.basicConfig(level=0)
-    LOGGER.setLevel(0)
+    LOGGER.setLevel(20-int(is_stdout_debug)*10)
     LOGGER.propagate = is_to_propagate_to_root_logger
+    # If root logger has not been set
+    # Or user don't know what is logging at all
+    # logging.basicConfig(file="/dev/null", level=0)  # Linux
+    # logging.basicConfig(file="NUL", level=0)  # Win
+    logging.basicConfig(stream=io.StringIO(), level=0)  # Any but eats memory
     #####
     # 1) Set up stdout logs
     # 1.0) Add debug handler if necessary
