@@ -1,5 +1,7 @@
 """This is a one file library with main function get_logger
-which can be used as first logger set up for new py packages"""
+which can be used as first logger set up for new py packages
+Manual can be found here: https://github.com/stas-prokopiev/basic_package_logger
+"""
 import sys
 import os
 import io
