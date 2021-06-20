@@ -34,7 +34,7 @@ How to use
 
     import logging
 
-    LOGGER = logging.get_logger(__name__)
+    LOGGER = logging.getLogger(__name__)
 
 
 Now you have perfectly set up logger for your library or package
@@ -108,4 +108,3 @@ License
 =======
 
 This project is licensed under the MIT License.
-
