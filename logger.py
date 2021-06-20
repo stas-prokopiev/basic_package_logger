@@ -1,4 +1,4 @@
-"""This is a one file library with main function get_logger
+"""This is a one file library with main function initialize_project_logger
 which can be used as first logger set up for new py packages
 Manual can be found here: https://github.com/stas-prokopiev/basic_package_logger
 """
@@ -38,23 +38,24 @@ class OnlyLowerLevelFilter():
         self.level = level
 
     def filter(self, record):
+        """Filter messages with level lower than given"""
         return record.levelno < self.level
 
 
-def get_logger(
+def initialize_project_logger(
         name,
         path_dir_where_to_store_logs="",
         is_stdout_debug=False,
         is_to_propagate_to_root_logger=False,
 ):
     """function returns a perfectly set up logger for the new package"""
-    LOGGER = logging.getLogger(name)
+    logger_obj = logging.getLogger(name)
     # If logger already exists then just return it
-    if LOGGER.handlers:
-        return LOGGER
+    if logger_obj.handlers:
+        return logger_obj
     # Create and set basic settings for logger
-    LOGGER.setLevel(20-int(is_stdout_debug)*10)
-    LOGGER.propagate = is_to_propagate_to_root_logger
+    logger_obj.setLevel(20-int(is_stdout_debug)*10)
+    logger_obj.propagate = is_to_propagate_to_root_logger
     # If root logger has not been set
     # Or user don't know what is logging at all
     # logging.basicConfig(file="/dev/null", level=0)  # Linux
@@ -68,26 +69,26 @@ def get_logger(
         debug_handler.setLevel(level=0)
         debug_handler.setFormatter(logging.Formatter(STR_DEBUG_FORMAT))
         debug_handler.addFilter(OnlyLowerLevelFilter(20))
-        LOGGER.addHandler(debug_handler)
+        logger_obj.addHandler(debug_handler)
     # 1.1) Add info handler
     info_handler = logging.StreamHandler(sys.stdout)
     info_handler.setLevel(level=20)
     info_handler.setFormatter(logging.Formatter(STR_INFO_FORMAT))
     info_handler.addFilter(OnlyLowerLevelFilter(30))
-    LOGGER.addHandler(info_handler)
+    logger_obj.addHandler(info_handler)
     # 1.2) Add warning handler
     warning_handler = logging.StreamHandler(sys.stdout)
     warning_handler.setLevel(level=30)
     warning_handler.setFormatter(logging.Formatter(STR_WARNING_FORMAT))
     warning_handler.addFilter(OnlyLowerLevelFilter(40))
-    LOGGER.addHandler(warning_handler)
+    logger_obj.addHandler(warning_handler)
     # 1.3) Add error handler
     error_handler = logging.StreamHandler(sys.stderr)
     error_handler.setLevel(level=40)
     error_handler.setFormatter(logging.Formatter(STR_ERROR_FORMAT))
-    LOGGER.addHandler(error_handler)
+    logger_obj.addHandler(error_handler)
     if not path_dir_where_to_store_logs:
-        return LOGGER
+        return None
     if not os.path.isdir(path_dir_where_to_store_logs):
         raise TypeError(
             "Wrong type of argument 'path_dir_where_to_store_logs'\n"
@@ -108,7 +109,7 @@ def get_logger(
     )
     debug_file_handler.setLevel(level=0)
     debug_file_handler.setFormatter(logging.Formatter(STR_DEBUG_FILE_FORMAT))
-    LOGGER.addHandler(debug_file_handler)
+    logger_obj.addHandler(debug_file_handler)
     # 2.1) Warnings and above handler
     warnings_file_handler = logging.handlers.RotatingFileHandler(
         os.path.join(str_path_to_logs_dir, "errors.log"),
@@ -118,6 +119,4 @@ def get_logger(
     warnings_file_handler.setLevel(level=30)
     warnings_file_handler.setFormatter(
         logging.Formatter(STR_ERROR_FILE_FORMAT))
-    LOGGER.addHandler(warnings_file_handler)
-    #####
-    return LOGGER
+    logger_obj.addHandler(warnings_file_handler)

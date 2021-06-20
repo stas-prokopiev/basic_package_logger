@@ -6,7 +6,7 @@ The Perfect First LOGGER
 
 Overview.
 =========================
-| This is a one file (**logger.py**) library with only one function (**get_logger**)
+| This is a one file (**logger.py**) library with only one function (**initialize_project_logger**)
 | which returns a LOGGER that can be used as first logger in many cases
 
 How to use
@@ -21,7 +21,7 @@ How to use
 
     from . import logger
 
-    LOGGER = logger.get_logger(
+    logger.initialize_project_logger(
         name=__name__,
         path_dir_where_to_store_logs="",
         is_stdout_debug=False,
